@@ -16,13 +16,10 @@ let fivedayHeader = document.querySelector('#fiveday-header')
 let divCurrentInfo = document.querySelector('#divCurrentInfo')
 
 
-
-
 let inputAddress = document.querySelector('#location-input')
 inputAddress.addEventListener('submit', (e)=>{
    e.preventDefault()
    if(e.target.elements[0].value !==''){
-   console.log(e.target.elements[0].value)
    address = e.target.elements[0].value
    e.target.elements[0].value = ''
    geocode(address)
@@ -34,23 +31,16 @@ inputAddress.addEventListener('submit', (e)=>{
  })
 
 
-
 const geocode = async(address)=>{
     const response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${pkToken}`)
     if(response.status === 200){
       const data = await response.json()
-      console.log(data)
-      console.log(data.features[0].center[0])
-      console.log(data.features[0].center[1])
       longitude = data.features[0].center[0]
       latitude = data.features[0].center[1]
-      
-     
+  
       getWeather()
     }
 }
-
-
 
 
 const getWeather = async()=>{
@@ -58,16 +48,6 @@ const getWeather = async()=>{
 
     if(response.status === 200){
         const data = await response.json()
-        console.log(data)
-        console.log(moment.unix(data.current.dt).format('L'))
-        console.log(data.current.temp)
-        console.log(data.current.wind_speed)
-        console.log(data.current.humidity)
-        console.log(data.current.uvi)
-
-        console.log(currentInfo)
-
-
         
         currentInfo.classList.remove('d-none')
         fivedayHeader.classList.remove('d-none')
@@ -76,6 +56,9 @@ const getWeather = async()=>{
 
 
         span.textContent=`${address.toUpperCase()}(${moment.unix(data.current.dt).format('L')})`
+
+        let img = document.createElement('img')
+        img.setAttribute('src', `http://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`)
         
         let divTemp = document.querySelector('#divTemp')
         let divRow = document.createElement('div')
@@ -85,14 +68,12 @@ const getWeather = async()=>{
         let wind = document.createElement('p')
         let UV = document.createElement('p')
         let UVnums = document.createElement('span')
-        
+
+        span.append(img)
 
         divRow.setAttribute('class', 'row')
         divCol.setAttribute('class', 'col-12')
        
-
-     
-
         divTemp.innerHTML = ''
 
         divTemp.appendChild(divRow)
@@ -111,8 +92,8 @@ const getWeather = async()=>{
         
         divRow.appendChild(divCol)
         divCol.appendChild(UV)
-        
         UV.textContent = `UV Index: `
+
         if(data.current.uvi < 3){
           UVnums.setAttribute("class", "badge badge-success")
         }else if(data.current.uvi >= 3 && data.current.uvi <=5){
@@ -124,26 +105,11 @@ const getWeather = async()=>{
         UVnums.textContent = `${data.current.uvi}`
         UV.append(UVnums)
         
-       
-
-
-        console.log(data.daily)
-        console.log(moment.unix(data.daily[1].dt).format('L'))
-        console.log(data.daily[1].temp.max)
-        console.log(data.daily[1].wind_speed)
-        console.log(data.daily[1].humidity)
-        console.log(data.daily[1].weather[0].icon)
-
-
         let count = 1
-
-
 
         dailyForcast.forEach((daily)=>{
           daily.innerHTML = ''
          
-          
-
           let pDate = document.createElement('p')
           let pTemp = document.createElement('p')
           let pWind = document.createElement('p')
@@ -151,7 +117,7 @@ const getWeather = async()=>{
           
           let img = document.createElement('img')
           img.setAttribute('src', `http://openweathermap.org/img/wn/${data.daily[count].weather[0].icon}.png`)
-          console.log(img)
+          
           pDate.textContent = `${moment.unix(data.daily[count].dt).format('L')}`
           pTemp.textContent = `Temp: ${data.daily[count].temp.max}`
           
@@ -161,9 +127,6 @@ const getWeather = async()=>{
         
           daily.append(pDate, img, pTemp, pWind, pHum)
 
-
-       
-
           count++
 
         })
@@ -171,18 +134,6 @@ const getWeather = async()=>{
 
     }
 }
-
-
-
-
-
-document.querySelectorAll('.btn-block').forEach((item)=>{
-    item.addEventListener('click', (e)=>{
-        console.log(e.target.innerText)
-    })
-})
-
-
 
 
 
@@ -228,7 +179,6 @@ const createdLocation = (input)=>{
 
         locationEl.addEventListener('click',(e)=>{
             e.preventDefault()
-            console.log(e.target.innerText)
             address = e.target.innerText
              e.target.innerText = ''
              geocode(address)
