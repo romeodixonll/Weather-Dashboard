@@ -58,7 +58,7 @@ const getWeather = async()=>{
         span.textContent=`${address.toUpperCase()}(${moment.unix(data.current.dt).format('L')})`
 
         let img = document.createElement('img')
-        img.setAttribute('src', `http://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`)
+        img.setAttribute('src', `https://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`)
         
         let divTemp = document.querySelector('#divTemp')
         let divRow = document.createElement('div')
@@ -116,7 +116,7 @@ const getWeather = async()=>{
           let pHum = document.createElement('p')
           
           let img = document.createElement('img')
-          img.setAttribute('src', `http://openweathermap.org/img/wn/${data.daily[count].weather[0].icon}.png`)
+          img.setAttribute('src', `https://openweathermap.org/img/wn/${data.daily[count].weather[0].icon}.png`)
           
           pDate.textContent = `${moment.unix(data.daily[count].dt).format('L')}`
           pTemp.textContent = `Temp: ${data.daily[count].temp.max}`
