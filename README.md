@@ -1,5 +1,6 @@
 # Weather Dashboard
 ![GitHub license](https://img.shields.io/badge/License-MIT-yellow.svg)
+Deployed link:https://romeodixonll.github.io/Weather-Dashboard/
 
 ## Description
 The weather dashboard allows easily access to current weather and 5-day forcasted weather for any specified county, state, or city. The location is pull from MapBox API then sent to Open Weather API, which provides the weather icon, Temperature, Wind Speed, and UV index. This data is then employed with specific key words and applied to the page. the locations that are entered are then saved to local storage, appended below the search bar, and can be easily clicked to display the given weather
