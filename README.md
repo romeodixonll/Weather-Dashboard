@@ -1,5 +1,6 @@
 # Weather Dashboard
 ![GitHub license](https://img.shields.io/badge/License-MIT-yellow.svg)
+</br>
 Deployed link:https://romeodixonll.github.io/Weather-Dashboard/
 
 ## Description
