@@ -1,4 +1,4 @@
-const apiKey = 'b441769856f5d53f2422b6f163a59126'
+const apiKey = '17dd29823de90b01d8b6eac65fa8ed11'
 const pkToken ='pk.eyJ1Ijoicm9tZW9kaXhvbmxsIiwiYSI6ImNreHcycmVzYTEwdDUyd3FmbmdpNHg0b3EifQ.6FFcd2PvR0BS_K_KeBe0AQ'
 let city = 'austin'
 let address 
@@ -44,7 +44,7 @@ const geocode = async(address)=>{
 
 
 const getWeather = async()=>{
-    const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`)
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}`)
 
     if(response.status === 200){
         const data = await response.json()
