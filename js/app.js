@@ -44,7 +44,7 @@ const geocode = async(address)=>{
 
 
 const getWeather = async()=>{
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`)
+    const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`)
 
     if(response.status === 200){
         const data = await response.json()
