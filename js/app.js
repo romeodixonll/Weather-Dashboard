@@ -55,7 +55,7 @@ const getWeather = async()=>{
         
 
 
-        span.textContent=`${address.toUpperCase()}(${moment.unix(data.current.dt).format('L')})`
+        span.textContent=`${address.toUpperCase()}(${moment.unix(data.dt).format('L')})`
 
         let img = document.createElement('img')
         img.setAttribute('src', `https://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`)
